@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RpaySense - Dashboard</title>
+
+  <!-- ✅ Link to Index CSS (with rupee animation) -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+  <!-- ✅ Rupee Animation Container -->
+  <div class="rupee-container"></div>
+
+  <div class="container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="RpaySense Logo" class="logo" />
+
+    <h1>RpaySense : Daily Expense Tracker</h1>
+    <h6>Track Smart. Spend Wise.</h6>
+
+    <!-- ✅ Add Expense Form -->
+    <form id="expense-form" action="/add_expense" method="POST">
+      <div class="form-row">
+        <input type="date" name="date" required>
+        <input type="number" name="amount" placeholder="Amount (₹)" required>
+        <input type="text" name="category" placeholder="Category (Food, Travel...)" required>
+        <textarea name="note" placeholder="Note (optional)"></textarea>
+      </div>
+      <button type="submit">➕ Add Expense</button>
+    </form>
+
+    <!-- ✅ Expense List -->
+    <div id="expenses-list">
+      <h2>Your Expenses ↓</h2>
+      <ul id="expense-items">
+        {% for expense in expenses %}
+        <li>
+          <strong>{{ expense.date }}</strong> → ₹{{ expense.amount }} spent on <strong>{{ expense.category }}</strong> ({{ expense.note }})
+          <!-- ✅ Delete Button -->
+          <form action="/delete_expense/{{ expense.id }}" method="POST" style="display:inline;">
+            <button type="submit" class="delete-btn">❌</button>
+          </form>
+        </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <a href="/logout" class="logout-btn">🚪 Logout</a>
+  </div>
+
+  <div class="watermark">Developed by Amaya B Lal</div>
+  <div class="watermark2">@ Manage money with RpaySense</div>
+
+  <!-- ✅ Rupee Animation Script -->
+  <script>
+    const rupeeContainer = document.querySelector('.rupee-container');
+
+    function createRupee() {
+      const rupee = document.createElement('div');
+      rupee.classList.add('rupee');
+      rupee.innerText = '₹';
+      rupee.style.left = Math.random() * 100 + 'vw';
+      rupee.style.fontSize = Math.random() * 20 + 15 + 'px';
+      rupeeContainer.appendChild(rupee);
+
+      setTimeout(() => rupee.remove(), 6000);
+    }
+
+    setInterval(createRupee, 300);
+  </script>
+
+</body>
+</html>

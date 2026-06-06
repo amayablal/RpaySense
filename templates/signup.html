@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Signup - RpaySense</title>
+
+  <!-- ✅ Link CSS properly -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style_login.css') }}">
+  <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+</head>
+<body>
+
+  <div class="rupee-container"></div>
+
+  <div class="container">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="RpaySense Logo" class="logo" />
+
+    <h1>Create your RpaySense Account</h1>
+
+    {% if error %}
+      <p style="color: red; text-align: center; font-weight: bold; margin-top: -10px;">
+        {{ error }}
+      </p>
+    {% endif %}
+
+    <div class="form-box">
+      <form action="/signup" method="POST">
+        <div class="form-row-vertical">
+          <input type="text" name="username" placeholder="Username" required />
+          <input type="email" name="email" placeholder="Email" required />
+          <input type="password" name="password" placeholder="Password" required />
+        </div>
+        <button type="submit">Sign Up</button>
+      </form>
+      <p style="margin-top: 15px;">Already have an account? <a href="/login">Login</a></p>
+    </div>
+  </div>
+
+  <div class="watermark">Developed by Amaya B Lal</div>
+  <div class="watermark2">@ Manage money with RpaySense</div>
+</body>
+</html>
