@@ -13,6 +13,8 @@ body {
   text-align: center;
   overflow-x: hidden;
   overflow-y: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 @keyframes gradientMove {
@@ -24,6 +26,7 @@ body {
 /* 🌟 Container */
 .container {
   padding: 30px;
+  flex: 1;
 }
 
 /* 📜 Logo */
@@ -116,6 +119,15 @@ button:hover {
   pointer-events: none;
   z-index: 1;
 }
+.footer-watermark {
+  padding: 10px 15px;
+  font-size: 12px;
+  font-style: italic;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.404)
+}
+
 @keyframes floatRupee {
   0% {
     transform: translateY(0) rotate(0deg);
@@ -125,5 +137,6 @@ button:hover {
     transform: translateY(100vh) rotate(360deg);
     opacity: 0;
   }
+  
   
 }
